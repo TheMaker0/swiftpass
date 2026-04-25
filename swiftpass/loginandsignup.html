@@ -156,8 +156,25 @@
     <input type="password" id="login-pw" placeholder="Enter your password"/>
   </div>
 
-  <button class="btn" onclick="alert('Logging in…')">Log In</button>
-
+<a href="./dashboard.html" 
+   style="
+     display: inline-block;
+     background: #2563eb;
+     color: #ffffff;
+     font-family: 'Barlow', sans-serif;
+     font-weight: 700;
+     font-size: 1rem;
+     padding: 12px 28px;
+     border-radius: 999px;
+     text-decoration: none;
+     box-shadow: 0 6px 24px rgba(37, 99, 235, 0.28);
+     transition: all 0.2s ease;
+   "
+   onmouseover="this.style.background='#1a3bbf'; this.style.transform='scale(1.05)'"
+   onmouseout="this.style.background='#2563eb'; this.style.transform='scale(1)'"
+>
+  LOGIN
+</a>
   <div class="card-footer">
     Don't have an account? <a onclick="showSignup()">Sign Up</a>
   </div>
