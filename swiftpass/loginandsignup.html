@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swift Pass – Login & Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-dark: #1a3bbf;
+      --blue-mid: #2563eb;
+      --blue-light: #3b9ee8;
+      --blue-pale: #e8f0fe;
+      --blue-bg: #dce8f8;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --gray-light: #f3f6fc;
+      --border: #d1daf0;
+      --text: #1e2a4a;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #c9d9f0 0%, #dce8f8 40%, #eef2fb 70%, #d0e0f5 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(37,99,235,0.13);
+      width: 100%;
+      max-width: 460px;
+      padding: 2.8rem 2.8rem 2.2rem;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      color: var(--blue-mid);
+      text-align: center;
+      margin-bottom: 1.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── FORM FIELDS ── */
+    .field { margin-bottom: 1.1rem; }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text);
+      margin-bottom: 0.38rem;
+    }
+
+    input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.72rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+
+    input::placeholder { color: #aab4cc; }
+
+    input:focus {
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    }
+
+    /* ── BUTTON ── */
+    .btn {
+      width: 100%;
+      background: var(--blue-mid);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      padding: 0.82rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+      box-shadow: 0 4px 18px rgba(37,99,235,0.28);
+    }
+
+    .btn:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(37,99,235,0.35);
+    }
+
+    /* ── FOOTER LINKS ── */
+    .card-footer {
+      text-align: center;
+      margin-top: 1.1rem;
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    .card-footer a {
+      color: var(--blue-mid);
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .card-footer a:hover { text-decoration: underline; }
+
+    .powered {
+      text-align: center;
+      margin-top: 0.55rem;
+      font-size: 0.83rem;
+      color: var(--gray);
+    }
+
+    /* ── PANEL TOGGLE ── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN CARD -->
+<div class="card" id="loginCard">
+  <div class="card-title">Swift Pass</div>
+
+  <div class="field">
+    <label for="login-id">ID Number</label>
+    <input type="text" id="login-id" placeholder="Enter your ID number"/>
+  </div>
+
+  <div class="field">
+    <label for="login-pw">Password</label>
+    <input type="password" id="login-pw" placeholder="Enter your password"/>
+  </div>
+
+  <button class="btn" onclick="alert('Logging in…')">Log In</button>
+
+  <div class="card-footer">
+    Don't have an account? <a onclick="showSignup()">Sign Up</a>
+  </div>
+  <div class="powered">Powered by Tarlac State University</div>
+</div>
+
+<!-- SIGN UP CARD -->
+<div class="card" id="signupCard" style="display:none;">
+  <div class="card-title">Create an Account</div>
+
+  <div class="field">
+    <label for="su-name">Full Name</label>
+    <input type="text" id="su-name" placeholder="Enter your full name"/>
+  </div>
+
+  <div class="field">
+    <label for="su-id">ID Number</label>
+    <input type="text" id="su-id" placeholder="Enter your ID number"/>
+  </div>
+
+  <div class="field">
+    <label for="su-rfid">RFID Number</label>
+    <input type="text" id="su-rfid" placeholder="Tap or type your RFID number"/>
+  </div>
+
+  <div class="field">
+    <label for="su-email">Email</label>
+    <input type="email" id="su-email" placeholder="Enter your email"/>
+  </div>
+
+  <div class="field">
+    <label for="su-pw">Password</label>
+    <input type="password" id="su-pw" placeholder="Create a password"/>
+  </div>
+
+  <div class="field">
+    <label for="su-cpw">Confirm Password</label>
+    <input type="password" id="su-cpw" placeholder="Confirm your password"/>
+  </div>
+
+  <button class="btn" onclick="alert('Account created!')">Sign Up</button>
+
+  <div class="card-footer">
+    Already have an account? <a onclick="showLogin()">Log In</a>
+  </div>
+  <div class="powered">Powered by Tarlac State University</div>
+</div>
+
+<script>
+  function showSignup() {
+    document.getElementById('loginCard').style.display = 'none';
+    const s = document.getElementById('signupCard');
+    s.style.display = 'block';
+    s.style.animation = 'none';
+    void s.offsetWidth;
+    s.style.animation = 'fadeUp 0.45s ease forwards';
+  }
+
+  function showLogin() {
+    document.getElementById('signupCard').style.display = 'none';
+    const l = document.getElementById('loginCard');
+    l.style.display = 'block';
+    l.style.animation = 'none';
+    void l.offsetWidth;
+    l.style.animation = 'fadeUp 0.45s ease forwards';
+  }
+</script>
+</body>
+</html>
